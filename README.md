@@ -125,8 +125,8 @@ Before you begin, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Prathammehta07/smart-telemedicine-for-rural-healthcare.git
-cd smart-telemedicine-for-rural-healthcare
+git clone https://github.com/kevindesai1312/biothron_sehatsetu.git
+cd biothron_sehatsetu
 ```
 
 ### 2. Install Dependencies
@@ -197,7 +197,7 @@ The application will be available at `http://localhost:8080`
 ## 🏗️ Project Structure
 
 ```
-smart-telemedicine-for-rural-healthcare/
+biothron_sehatsetu/
 ├── client/                 # React SPA frontend
 │   ├── components/        # Reusable UI components
 │   │   ├── ui/           # Radix UI components
@@ -315,7 +315,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👥 Authors
 
 - **Pratham Mehta** - *Initial work* - [Prathammehta07](https://github.com/Prathammehta07)
-- kevin desai-*developer* -  [kevindesai1312]
+- **Kevin Desai** - *Developer* - [kevindesai1312](https://github.com/kevindesai1312)
 
 ## 🙏 Acknowledgments
 
