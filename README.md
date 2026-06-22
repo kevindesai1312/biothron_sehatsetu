@@ -163,6 +163,9 @@ DATABASE_URL=your_database_url
 # JWT Secret (for authentication)
 JWT_SECRET=your_secret_key_here
 
+# Gemini API Key (for AI diagnostics)
+GEMINI_API_KEY=your_gemini_api_key_here
+
 # Other configuration variables...
 ```
 
