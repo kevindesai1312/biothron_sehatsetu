@@ -22,6 +22,7 @@ import {
   Star
 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import Chatbot from "@/components/Chatbot";
 
 export default function GuestDashboard() {
   const { user, logout } = useUnifiedAuth();
@@ -390,6 +391,9 @@ export default function GuestDashboard() {
           </CardContent>
         </Card>
       </div>
+      
+      {/* Interactive Floating Chatbot */}
+      <Chatbot />
     </div>
   );
 }

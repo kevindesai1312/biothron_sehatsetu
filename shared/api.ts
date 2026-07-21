@@ -60,3 +60,18 @@ export interface AdvancedSymptomCheckResult extends SymptomCheckResult {
   preventiveMeasures?: string[];
   aiTriageLevel?: TriageLevel;
 }
+
+export interface ChatMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
+export interface ChatRequest {
+  messages: ChatMessage[];
+  language?: "en" | "hi";
+}
+
+export interface ChatResponse {
+  reply: string;
+}
+

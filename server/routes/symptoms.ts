@@ -1,33 +1,7 @@
 import { RequestHandler } from "express";
 import type { AdvancedSymptomCheckInput, AdvancedSymptomCheckResult, SymptomCheckResult, TriageLevel } from "@shared/api";
 import { SymptomService, SymptomRecordService } from "../services/database";
-
-// Official Google Gemini Integration
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
-const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-
-interface RapidAPIGeminiRequest {
-  contents: {
-    role: 'user' | 'model';
-    parts: {
-      text: string;
-    }[];
-  }[];
-}
-
-interface RapidAPIGeminiResponse {
-  candidates?: {
-    content: {
-      parts: {
-        text: string;
-      }[];
-    };
-    finishReason: string;
-  }[];
-  text?: string;
-  response?: string;
-  message?: string;
-}
+import { generateAIContent } from "../services/ai";
 
 // Enhanced symptoms database
 const COMPREHENSIVE_SYMPTOMS = [
@@ -184,44 +158,9 @@ Please provide a structured response with:
 
 Format as clear sections. Be conservative and err on the side of caution. This is for triage purposes only.`;
 
-    const requestBody: RapidAPIGeminiRequest = {
-      contents: [
-        {
-          role: 'user',
-          parts: [
-            {
-              text: prompt
-            }
-          ]
-        }
-      ]
-    };
-
-    const response = await fetch(GEMINI_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(requestBody)
-    });
-
-    if (!response.ok) {
-      throw new Error(`RapidAPI Gemini error: ${response.status} - ${response.statusText}`);
-    }
-
-    const data: RapidAPIGeminiResponse = await response.json();
-    
-    // Handle different response formats from RapidAPI
-    let aiText = '';
-    if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-      aiText = data.candidates[0].content.parts[0]?.text || '';
-    } else if (data.text) {
-      aiText = data.text;
-    } else if (data.response) {
-      aiText = data.response;
-    } else if (data.message) {
-      aiText = data.message;
-    }
+    const result = await generateAIContent(prompt);
+    const response = await result.response;
+    const aiText = response.text();
 
     if (!aiText) {
       throw new Error('No valid response text received from AI');

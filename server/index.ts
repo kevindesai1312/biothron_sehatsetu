@@ -14,6 +14,7 @@ import {
   handlePharmacies,
   handleAddMedicine
 } from "./routes/admin";
+import { handleChatRequest } from "./routes/chatbot";
 import doctorRoutes from "./routes/doctor";
 import patientRoutes from "./routes/patient";
 
@@ -50,6 +51,7 @@ export function createServer() {
   app.get("/api/medicines", handleMedicines);
   app.post("/api/symptoms/check", handleSymptomCheck);
   app.get("/api/symptoms/list", getSymptomsList);
+  app.post("/api/chat", handleChatRequest);
 
   // Doctor routes
   app.use("/api/doctor", doctorRoutes);

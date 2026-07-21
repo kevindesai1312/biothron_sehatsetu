@@ -36,6 +36,7 @@ import {
   Heart,
   Star,
 } from "lucide-react";
+import Chatbot from "@/components/Chatbot";
 
 export default function Index() {
   const { t } = useI18n();
@@ -79,6 +80,7 @@ export default function Index() {
         <AboutUs />
         <FooterRibbon />
         <p className="sr-only">{exampleFromServer}</p>
+        <Chatbot />
       </div>
     );
   }
@@ -97,6 +99,7 @@ export default function Index() {
       <AboutUs />
       <FooterRibbon />
       <p className="sr-only">{exampleFromServer}</p>
+      <Chatbot />
     </div>
   );
 }
